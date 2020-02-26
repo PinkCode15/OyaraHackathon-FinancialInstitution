@@ -14,4 +14,8 @@ class Transaction extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
+
+    public static function checkIfReferenceExists($reference){
+        return self::where('reference_id',$reference)->exists();
+    }
 }

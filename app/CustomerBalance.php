@@ -16,4 +16,8 @@ class CustomerBalance extends Model
         return $this->belongsTo(Customer::class, 'customer_id');
     }
 
+    public static function getCustomerBalance($account_number){
+        return self::where('account_number',$account_number)->first();
+    }
+
 }

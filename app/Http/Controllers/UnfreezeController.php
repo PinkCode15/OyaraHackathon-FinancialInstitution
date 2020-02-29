@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\FreezeandUnfreezeRequest;
 use App\Customer;
 
-class FreezeController extends Controller
-{
-    public function FreezeCustomer(FreezeandUnfreezeRequest $request) {
+class UnfreezeController extends Controller
+{   
+    public function UnfreezeCustomer(FreezeandUnfreezeRequest $request) {
         DB::beginTransaction();
         try{
             if(!Customer::checkIfCustomerExists($request->account_number)){
@@ -19,22 +19,22 @@ class FreezeController extends Controller
                     'message' => 'Customer Does Not Exist'    
                 ]);
             }
-            if(Customer::checkStatus($request->account_number) == 'inactive'){
+            if(Customer::checkStatus($request->account_number) == 'active'){
                 return response()->json([
                     'status' => 'failed',
                     'statuscode' => '07',
-                    'message' => 'Account Is Already Inactive'    
+                    'message' => 'Account Is Already Active'    
                 ]);
             }
             $customer = Customer::getCustomer($request->account_number);
-            $customer->status = 'inactive';
+            $customer->status = 'active';
             $customer->save();
 
             DB::commit();
             return response()->json([
                 'status' => 'success',
                 'statuscode' => '02',
-                'message' => 'Account Freeze Successful'    
+                'message' => 'Account Unfreeze Successful'    
             ]);
 
             

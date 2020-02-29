@@ -21,3 +21,5 @@ Route::post('customers', 'CustomerController@createCustomer');
 Route::post('customers/credit', 'CreditController@creditCustomer');
 Route::post('customers/debit', 'DebitController@debitCustomer');
 Route::post('customers/freeze', 'FreezeController@freezeCustomer');
+Route::post('customers/unfreeze', 'UnfreezeController@unfreezeCustomer');
+Route::get('customers/statement', 'GetStatementController@getStatement');

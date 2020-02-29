@@ -46,11 +46,11 @@ class CreditController extends Controller
                 'customer_id' => $customer->id,
                 'account_number' => $request->account_number,
                 'amount' => $request->amount,
-                'channel' => $request->channel,
-                'debit_or_credit' => 'credit',
+                'channel' => strtolower($request->channel),
+                'debit_or_credit' => 'Credit',
                 'narration' => $request->narration,
-                'reference_id' => $request->reference,
-                'transaction_type' => $request->transaction_type,
+                'reference_id' => strtoupper($request->reference),
+                'transaction_type' => 'Credit',
                 'balance_after' => $customerBalance->available_balance,
                 'value_date' => date('Y-m-d')
             ]);
@@ -70,7 +70,7 @@ class CreditController extends Controller
             return response()->json([
                 'status' => 'failed',
                 'statuscode' => '05',
-                'message' => 'Server Error'    
+                'message' => 'An Error Occured. Please Try Again.'    
             ]);
         }
     }

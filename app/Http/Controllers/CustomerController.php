@@ -54,7 +54,7 @@ class CustomerController extends Controller
             return response()->json([
                 'status' => 'failed',
                 'statuscode' => '05',
-                'message' => 'Server Error'    
+                'message' => 'An Error Occured. Please Try Again.'    
             ]);
 
         }
